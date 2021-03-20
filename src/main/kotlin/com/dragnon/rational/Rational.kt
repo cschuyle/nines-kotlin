@@ -47,27 +47,33 @@ class Rational(num: Int, den: Int) {
 }
 
 
-
-fun plus(left: Rational, right: Rational): Rational {
+fun add(left: Rational, right: Rational): Rational {
     val gcd = gcd(positive(left.den), positive(right.den))
     val commonDen = left.den * right.den / gcd
     return Rational(left.num * (commonDen / left.den) + right.num * (commonDen / right.den), commonDen)
 }
 
-fun minus(left: Rational, right: Rational): Rational {
+infix fun Rational.plus(right: Rational) = add(this, right)
+
+fun subtract(left: Rational, right: Rational): Rational {
     val gcd = gcd(positive(left.den), positive(right.den))
     val commonDen = left.den * right.den / gcd
     return Rational(left.num * (commonDen / left.den) - right.num * (commonDen / right.den), commonDen)
 }
 
-fun times(left: Rational, right: Rational): Rational {
+infix fun Rational.minus(right: Rational) = subtract(this, right)
+
+fun multiply(left: Rational, right: Rational): Rational {
     return Rational(left.num * right.num, left.den * right.den)
 }
 
-fun dividedBy(left: Rational, right: Rational): Rational {
-    return times(left, Rational(right.den, right.num))
+infix fun Rational.times(right: Rational) = multiply(this, right)
+
+fun divide(left: Rational, right: Rational): Rational {
+    return multiply(left, Rational(right.den, right.num))
 }
 
+infix fun Rational.dividedBy(right: Rational) = divide(this, right)
 
 
 private fun isPositive(i: Int) = i > 0

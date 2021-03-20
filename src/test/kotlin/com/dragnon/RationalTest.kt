@@ -28,7 +28,7 @@ class RationalTest {
     fun `addition that doesn't require simplification`() {
         assertEquals(
             Rational(2, 3),
-            plus(Rational(1, 3), Rational(1, 3))
+            add(Rational(1, 3), Rational(1, 3))
         )
     }
 
@@ -36,7 +36,7 @@ class RationalTest {
     fun `addition that requires simplification`() {
         assertEquals(
             Rational(1, 2),
-            plus(Rational(1, 3), Rational(1, 6))
+            add(Rational(1, 3), Rational(1, 6))
         )
     }
 
@@ -44,7 +44,7 @@ class RationalTest {
     fun `addition of negatives`() {
         assertEquals(
             Rational(1, 6),
-            plus(Rational(-1, 3), Rational(1, 2)),
+            add(Rational(-1, 3), Rational(1, 2)),
         )
     }
 
@@ -52,7 +52,7 @@ class RationalTest {
     fun subtraction() {
         assertEquals(
             Rational(-1, 6),
-            minus(Rational(1, 3), Rational(1, 2))
+            subtract(Rational(1, 3), Rational(1, 2))
         )
     }
 
@@ -60,7 +60,7 @@ class RationalTest {
     fun multiplication() {
         assertEquals(
             Rational(1, 3),
-            times(Rational(2, 3), Rational(1, 2))
+            multiply(Rational(2, 3), Rational(1, 2))
         )
     }
 
@@ -68,18 +68,18 @@ class RationalTest {
     fun division() {
         assertEquals(
             Rational(4, 3),
-            dividedBy(Rational(2, 3), Rational(1, 2))
+            divide(Rational(2, 3), Rational(1, 2))
         )
     }
 
     @Test
     fun divisionByZero() {
         assertThrows<IllegalArgumentException>( "Division by 0 error") {
-            dividedBy(Rational(1, 1), Rational(0, 2))
+            Rational(1, 1) dividedBy Rational(0, 2)
         }
         assertEquals(
             Rational(0, 1),
-            dividedBy(Rational(0, 1), Rational(1, 2))
+            Rational(0, 1) dividedBy Rational(1, 2)
         )
     }
 }
